@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import HeaderPage from "./header/HeaderPage";
+import FooterPage from "./footer/FooterPage";
+import RouterPath from "./route-conf/RouterPath";
+import { Container, Row} from 'reactstrap'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Row className="mt-5">
+          <HeaderPage />
+        </Row>
+        <Row className="mt-5">
+          <RouterPath/>
+        </Row>
+      </Container>
+      <FooterPage />
     </div>
   );
 }
