@@ -9,22 +9,21 @@ const QuesBody = () => {
 
     const ask = async() =>{
         const response = await axios.get(`http://localhost:81/api/v1/posts`);
-        const result = await response.data;
+        const temp = await response.data;
 
         let res = [];
-        for (let i = 0; i < result.length; i += 4) {
-
-            if(i === result.length-1){
-                res.push([result[i]]);
-                break;
-            } 
-            res.push([result[i], result[i + 1], result[i + 2], result[i + 3]]);
+        for (let i = 0; i < temp.length; i += 4) {
+            const filterObj = [temp[i], temp[i + 1], temp[i + 2], temp[i + 3]]
+            const rslt = filterObj.filter((element, i) => element !== undefined);
+            res.push(rslt);
         }
+
         setPosts(res);
     }
     
     useEffect(() => {
         ask();
+        
     }, []);
 
     

@@ -1,20 +1,25 @@
-import {Row,
+import {
     Col,
     Card,
     CardImg,
     CardTitle,
     CardSubtitle,
     CardText,
-    CardBody, 
-    Button} from 'reactstrap';
-import { Link } from 'react-router-dom';
+    CardBody} from 'reactstrap';
+import { useNavigate  } from 'react-router-dom';
 
 const QuesCardItem = ({posts}) =>{
+
+    const navigate = useNavigate();
+
+    const goPost = (id) => {
+        navigate(`/board/${id}`);
+    }
 
     return(
         <>
             {posts.map(item => 
-                <Col key={ item.id }>
+                <Col key={ item.id } onClick={() => goPost(item.id)}>
                     <Card>
                         <CardImg
                         alt="Card image cap"
@@ -33,11 +38,8 @@ const QuesCardItem = ({posts}) =>{
                             Card subtitle
                         </CardSubtitle>
                         <CardText>
-                            {item.content}
+                            {item.cardContent}
                         </CardText>
-                        <Button>
-                            <Link to="/board" className="text-decoration-none text-white">Button</Link>
-                        </Button>
                         </CardBody>
                     </Card>
                 </Col>

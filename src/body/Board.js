@@ -1,10 +1,35 @@
+import React, { useState, useEffect } from "react"
 import { Container, Row, Col} from "reactstrap";
-import { Content } from "./contentMock";
 import RippleBody from "./RippleBody";
 import Divider from "divider/Divider";
 import UserCard from "./reuseable/UserCard";
+import { useParams } from "react-router-dom"; 
+import axios from "axios";
 
 const Board = () => {
+
+  const {id} = useParams();
+
+  const [post, setPost] = useState([]);
+
+  const ask = async() =>{
+    const response = await axios.get(`http://localhost:81/api/v1/posts/${id}`);
+    const temp = await response.data;
+    setPost(temp);
+  }
+
+  const updateCnt = async() => {
+    const response = await axios.patch(`http://localhost:81/api/v1/posts/${id}`)
+    const temp = await response.data;
+    console.info("temp",temp)
+  }
+    
+    useEffect(() => {
+        ask();
+        updateCnt();
+    }, []);
+
+
   return (
     <Container>
       <Row>
@@ -13,13 +38,12 @@ const Board = () => {
           offset: 2,
         }}
         >
-          <h1 >이것은 제목 입니다. 글씨가 아름다워야 합니다.</h1>
+          <h1 >{post.title}</h1>
         </Col>
       </Row>
       <Row className="mt-4 text-muted">
         <Col sm={{offset:2}}>
-          <span> <strong>Asked</strong> today </span>
-          <span> <strong>Modified</strong> today </span>
+          <span> <strong>Asked</strong> { post.createdDate } </span>
           <span> <strong>Viewed</strong> 3 times </span>
         </Col>
       </Row>
@@ -32,7 +56,7 @@ const Board = () => {
 
           <Row>
           <div style={{whiteSpace:  'pre-wrap' }}>
-            { Content }
+            { post.content }
           </div>
           </Row>
 

@@ -6,7 +6,7 @@ function RouterPath() {
   return (
     <Routes>
         <Route path="/" element={<QuesBody />} />
-        <Route path="/board" element={<Board />} />
+        <Route path="/board/:id" element={<Board />} />
     </Routes>
   );
 }
