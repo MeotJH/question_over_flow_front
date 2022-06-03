@@ -9,10 +9,12 @@ import {Row,
     Button} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const QuesCardItem = () =>{
+const QuesCardItem = ({posts}) =>{
+
     return(
-        <Row sm="4" className='mt-3'>
-                <Col>
+        <>
+            {posts.map(item => 
+                <Col key={ item.id }>
                     <Card>
                         <CardImg
                         alt="Card image cap"
@@ -22,7 +24,7 @@ const QuesCardItem = () =>{
                         />
                         <CardBody>
                         <CardTitle tag="h5">
-                            Card title
+                            {item.title}
                         </CardTitle>
                         <CardSubtitle
                             className="mb-2 text-muted"
@@ -31,7 +33,7 @@ const QuesCardItem = () =>{
                             Card subtitle
                         </CardSubtitle>
                         <CardText>
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+                            {item.content}
                         </CardText>
                         <Button>
                             <Link to="/board" className="text-decoration-none text-white">Button</Link>
@@ -39,88 +41,8 @@ const QuesCardItem = () =>{
                         </CardBody>
                     </Card>
                 </Col>
-                <Col>
-                    <Card>
-                        <CardImg
-                        alt="Card image cap"
-                        src="https://picsum.photos/256/186"
-                        top
-                        width="100%"
-                        />
-                        <CardBody>
-                        <CardTitle tag="h5">
-                            Card title
-                        </CardTitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            Card subtitle
-                        </CardSubtitle>
-                        <CardText>
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        </CardText>
-                        <Button>
-                            Button
-                        </Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <CardImg
-                        alt="Card image cap"
-                        src="https://picsum.photos/256/186"
-                        top
-                        width="100%"
-                        />
-                        <CardBody>
-                        <CardTitle tag="h5">
-                            Card title
-                        </CardTitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            Card subtitle
-                        </CardSubtitle>
-                        <CardText>
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        </CardText>
-                        <Button>
-                            Button
-                        </Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-                <Col>
-                    <Card>
-                        <CardImg
-                        alt="Card image cap"
-                        src="https://picsum.photos/256/186"
-                        top
-                        width="100%"
-                        />
-                        <CardBody>
-                        <CardTitle tag="h5">
-                            Card title
-                        </CardTitle>
-                        <CardSubtitle
-                            className="mb-2 text-muted"
-                            tag="h6"
-                        >
-                            Card subtitle
-                        </CardSubtitle>
-                        <CardText>
-                            This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-                        </CardText>
-                        <Button>
-                            Button
-                        </Button>
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
+                )}
+        </>
     )
 }
 
