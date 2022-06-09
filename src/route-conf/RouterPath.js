@@ -1,4 +1,5 @@
 import QuesBody from "body/QuesBody";
+import LoginPage from "body/login/LoginPage"
 import Board from "body/Board";
 import { Route, Routes } from 'react-router-dom';
 

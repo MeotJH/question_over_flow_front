@@ -9,25 +9,25 @@ import axios from "axios";
 const Board = () => {
 
   const {id} = useParams();
-
   const [post, setPost] = useState([]);
+  const [views, setViews] = useState([]);
 
-  const ask = async() =>{
+  const getPosts = async() => {
     const response = await axios.get(`http://localhost:81/api/v1/posts/${id}`);
-    const temp = await response.data;
-    setPost(temp);
+    const serverData = await response.data;
+    setPost(serverData);
   }
 
-  const updateCnt = async() => {
+  const updateViews = async() => {
     const response = await axios.patch(`http://localhost:81/api/v1/posts/${id}`)
-    const temp = await response.data;
-    console.info("temp",temp)
+    const serverData = await response.data;
+    setViews(serverData);
   }
     
-    useEffect(() => {
-        ask();
-        updateCnt();
-    }, []);
+  useEffect(() => {
+      getPosts();
+      updateViews();
+  }, []);
 
 
   return (
@@ -44,7 +44,7 @@ const Board = () => {
       <Row className="mt-4 text-muted">
         <Col sm={{offset:2}}>
           <span> <strong>Asked</strong> { post.createdDate } </span>
-          <span> <strong>Viewed</strong> 3 times </span>
+          <span> <strong>Viewed</strong> { views } times </span>
         </Col>
       </Row>
 
