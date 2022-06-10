@@ -1,12 +1,12 @@
-import React, { useState } from "react"
+import React from "react"
 import ButtonProp from 'body/reuseable/ButtonProp';
-import { deleteToken } from "body/common/jwt";
 
-const LoginPage = ({flag,setFlag}) => {
+const LoginUserPage = ({flag, deleteJwt}) => {
+
+    console.info(flag, deleteJwt);
 
     const logout = () => {
-        deleteToken();
-        setFlag(!flag);
+        deleteJwt();
     }
     
     return(
@@ -20,4 +20,4 @@ const LoginPage = ({flag,setFlag}) => {
     )
 }
 
-export default LoginPage;
+export default LoginUserPage;

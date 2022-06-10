@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react"
 import { Container, Row } from 'reactstrap';
 import QuesCardItem from 'body/QuesCardItem';
 import qofAxios from "./common/QofAxios";
-import { setToken } from "./common/jwt";
 
-const QuesBody = () => {
+const QuesBody = ({setJwt, hasJwt}) => {
 
     const [posts, setPosts] = useState([]);
 
@@ -26,13 +25,13 @@ const QuesBody = () => {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const urlToken = urlParams.get('token');
-        setToken(urlToken);
+        setJwt(urlToken);
+        hasJwt(urlToken);
     }
     
     useEffect(() => {
         ask();
         getJwt();
-        
     }, []);
 
     

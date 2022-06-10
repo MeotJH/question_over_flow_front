@@ -9,10 +9,11 @@ import axios from "axios";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from 'body/modules';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 axios.defaults.withCredentials = true;
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, composeWithDevTools());
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

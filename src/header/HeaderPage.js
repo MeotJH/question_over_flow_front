@@ -1,6 +1,5 @@
 import LoginPage from "body/login/LoginPage";
-import { hasToken ,getToken } from "body/common/jwt";
-import LoginUserPage from "body/login/LoginUserPage"
+import LoginUserPageContainer from "body/container/LoginUserPageContainer";
 import { Navbar,
         NavbarBrand,
         NavbarToggler,
@@ -9,20 +8,15 @@ import { Navbar,
         Container,
         Button,
         Row} from 'reactstrap';
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 const HeaderPage = () => {
 
-    const [flag, setFlag] = useState(
-        () => hasToken() || 0
-      );
-
+    const token = useSelector(state => state.quesBody.flag);
 
     useEffect(() => {
-        console.info("flag",flag);
-        console.info("hasToken",hasToken());
-        setTimeout(() => {console.info("setTimeOutFlag",flag); console.info("setTimeOuthasToken",hasToken());}, 5000);
-    },[flag])
+    },[token])
 
     return(
         <Navbar
@@ -58,7 +52,7 @@ const HeaderPage = () => {
                     </Row>
                 </Col>
                 <Col  sm="2">
-                    { flag === true ? <LoginUserPage flag={flag} setFlag={setFlag}/> : <LoginPage/> }
+                   { token === true ? <LoginUserPageContainer token={token} />  : <LoginPage/> }
                 </Col>
             </Row>
         </Container>
